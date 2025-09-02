@@ -24,22 +24,28 @@ st.title('IPL Win Predictor')
 col1, col2 = st.columns(2)
 
 with col1:
-    batting_team = st.selectbox('Select the batting team',sorted(teams))
+    batting_team = st.selectbox('Select the batting team', sorted(teams), index=None, placeholder="Choose batting team")
 with col2:
-    bowling_team = st.selectbox('Select the bowling team',sorted(teams))
+    bowling_team = st.selectbox('Select the bowling team', sorted(teams), index=None, placeholder="Choose bowling team")
 
-selected_city = st.selectbox('Select host city',sorted(cities))
+selected_city = st.selectbox(
+    'Select host city',
+    sorted(cities),
+    index=None,
+    placeholder="Choose a city"
+)
 
-target = st.number_input('Target')
+
+target = st.number_input('Target', min_value=0, step=1, format="%d")
 
 col3,col4,col5 = st.columns(3)
 
 with col3:
-    score = st.number_input('Score')
+    score = st.number_input('Score',min_value=0, step=1, format="%d")
 with col4:
     overs = st.number_input('Overs completed')
 with col5:
-    wickets = st.number_input('Wickets out')
+    wickets = st.number_input('Wickets out',min_value=0, step=1, format="%d")
 
 if st.button('Predict Probability'):
     runs_left = target - score
